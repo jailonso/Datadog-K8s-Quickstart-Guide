@@ -1,6 +1,6 @@
 # Datadog-K8s-Quickstart-Guide
 
-## QuickStart
+## Datadog Deployment
 
 - Create a text file with the structure below. You can get your API Key in [here](https://app.datadoghq.com/account/settings#api).  The 32 long token will be used to secure communication between the node Agent and the Datadog Cluster Agent. You can generate one online [here](http://www.unit-conversion.info/texttools/random-string-generator/).
 
@@ -37,7 +37,7 @@ If you want to validate the resources being deployed first, you can still use he
 helm template datadog datadog/datadog -n datadog -f <values file>
 ```
 
-## Installing Datadog Helm Charts
+### Installing Datadog Helm Charts
 
 ```shell
 helm repo add datadog https://helm.datadoghq.com
@@ -81,22 +81,16 @@ redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 
 - Check Container Map
 
-### Notes
+- Orchestrator Explorer
 
-#### AKS
+- Network Map
 
-AKS clusters using Kubernetes version 1.19 node pools and greater use *containerd* as its container runtime. -- [here](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
+### Troubleshooting
 
-#### Kubernetes 1.20
+### Proactivity
 
-Getting error message `Warning: Cannot retrieve leader election record` for *kube-controller-manager* and *kube-scheduler*. Set `leader_election: false` for those integrations. 
+### Resource Optimization Dashboard
 
-## Proxy
+- Download dashboard
 
-The values in the `no_proxy` variable are:
-
-- k8s.aws.pipsquack.ca - Hosts domain
-- cluster.local - Kubernetes dns zone - `kubectl describe configmap coredns -n kube-system`
-- 10.0.0.0/16 - Cluster address space
-- 172.16.0.0/12 - Kubernets service address space - `/etc/kubernetes/manifests/kube-controller-manager.yaml`
-- 192.168.0.0/16 - Kubernetes pods address space - `/etc/kubernetes/manifests/kube-controller-manager.yaml`
+- Import it
