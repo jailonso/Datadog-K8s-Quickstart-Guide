@@ -21,9 +21,9 @@ kubectl create ns datadog
 kubectl create secret generic datadog-keys --from-env-file=secrets.txt -n datadog
 ```
 
-- Download the [values file](values.yaml) for your Kubernetes flavour. Update values like `datadog.clusterName` and `DD_ENV`. If creating a secret with a different name in the previous step, update `datadog.apiKeyExistingSecret`.
+- Download the [default values file](https://github.com/DataDog/helm-charts/blob/main/charts/datadog/values.yaml) or use [the one attached in this repo for AKS](values.yaml)for your Kubernetes flavour. Update values like `datadog.clusterName` and `DD_ENV`. If creating a secret with a different name in the previous step, update `datadog.apiKeyExistingSecret`.
 
-- I recommend taking a look to [this repo](https://github.com/yafernandes/k8s-cluster/tree/master/kubernetes/helm) with different values for different k8s distribution.
+- I recommend taking a look to [this repo](https://github.com/yafernandes/k8s-cluster/tree/master/kubernetes/helm) with different values.yaml for different k8s distribution.
 
 - Deploy Datadog using the updated values file.
 
@@ -55,8 +55,10 @@ helm repo update
 ```shell
 kubectl create ns guestbook
 ```
+- For APM we need to install php client tracer. I have already do it by adding the php tracer in the [dockerfile](Dockerfile)
 
-- Deploy Frontend and Backend
+
+- Download and Deploy [Frontend](frontend) and [Backend](redis-master)
 
 ```shell
 kubectl apply -f frontend --namespace=guestbook
