@@ -1,0 +1,51 @@
+datadog:
+  clusterName: jaimealonso-webinar
+  apiKeyExistingSecret: datadog-keys
+  securityAgent:
+    compliance:
+      enabled: true
+      checkInterval: 5m
+    runtime:
+      enabled: true
+      syscallMonitor:
+        enabled: true
+  apm:
+    enabled: true
+  logs:
+    enabled: true
+    containerCollectAll: true
+  processAgent:
+    processCollection: true
+  networkMonitoring:
+    enabled: true
+  dogstatsd:
+    useHostPort: true
+  containerExclude: "image:agent"
+  kubelet:
+    host:
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    tlsVerify: false
+  criSocketPath: /var/run/containerd/containerd.sock
+agents:
+  tolerations:
+    - operator: Exists
+clusterAgent:
+  admissionController:
+    enabled: true
+    mutateUnlabelled: true
+  confd:
+    kube_apiserver_metrics.yaml: |-
+      cluster_check: true
+      init_config:
+      instances:
+        - prometheus_url: https://kubernetes.default/metrics
+          ssl_ca_cert: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          bearer_token_auth: true
+    http_check.yaml: |-
+      cluster_check: true
+      init_config:   
+      instances:
+        - name: guestbook
+          url: http://20.67.132.252

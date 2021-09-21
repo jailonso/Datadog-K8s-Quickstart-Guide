@@ -1,0 +1,58 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    tags.datadoghq.com/env: jaime-webinar
+    tags.datadoghq.com/service: guestbook
+    tags.datadoghq.com/version: "1.0"
+spec:
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+  replicas: 3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        env: guestbook
+        app: guestbook
+        tier: frontend
+        tags.datadoghq.com/env: jaime-webinar
+        tags.datadoghq.com/service: guestbook
+        tags.datadoghq.com/version: "1.0"
+    spec:
+      containers:
+      - name: php-redis
+        image: jailonso/php-redis:v1 
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: GET_HOSTS_FROM
+          value: dns
+        - name: DD_ENV
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/env']
+        - name: DD_SERVICE
+          value: guestbook
+        - name: DD_VERSION
+          value: "1.0"
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "8Mi"
+            cpu: "250m"
+          limits:
+            memory: "32Mi"
+            cpu: "500m" 
