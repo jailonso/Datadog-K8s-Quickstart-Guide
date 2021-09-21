@@ -71,7 +71,6 @@ NAME           TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
 frontend       LoadBalancer   10.0.111.83    52.158.120.95   80:32364/TCP   90s
 redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 ```
-![alt text](https://a.cl.ly/12uvbEAB)
 
 - As you can see, message is not printed. So Guestbook is not working!
 
@@ -81,11 +80,11 @@ redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 
 - Check [Kubernetes Out of the box dashboard](https://app.datadoghq.com/screen/integration/86/kubernetes---overview?from_ts=1632251058272&to_ts=1632254658272&live=true)
 
-![]((images/ootbdashboard.json))
+![]((images/ootbdashboard.jpg)
 
 - Check [Container Map](https://app.datadoghq.com/infrastructure/map?host=d33f0500ce64af0e4bd95726e4f9b74b32667424&fillby=avg%3Aprocess.stat.container.cpu.user_pct&sizeby=avg%3Anometric&groupby=kube_deployment&filter=kube_namespace%3Aguestbook&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=hostmap_blues&paletteflip=false&node_type=container)
 
-![alt text](images/containermap.json)
+![alt text](images/containermap.jpg)
 
 
 - [Orchestrator Explorer](https://app.datadoghq.com/orchestration/overview/pod?sort=metadata.name%3Aasc&tags=kube_namespace%3Aguestbook&start=1632253978831&end=1632254878831&paused=false)
@@ -93,7 +92,7 @@ redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 
 - [Network Map](https://app.datadoghq.com/network/map?destG=tag_dest_kube_deployment&destQ=&node_type=pod_name&srcG=tag_source_kube_namespace&srcQ=&unresolved=false&from_ts=1632243273824&to_ts=1632244173824&live=false)
 
-![alt text](images/networkmap.json)
+![alt text](images/networkmap.jpg)
 
 ### Troubleshooting
 
@@ -114,5 +113,5 @@ redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 
 - Import it
 
-![alt text](images/dashboard.json)
+![alt text](images/dashboard.jpg)
 
