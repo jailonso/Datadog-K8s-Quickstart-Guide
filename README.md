@@ -81,7 +81,7 @@ redis-master   ClusterIP      10.0.133.134   <none>          6379/TCP       77s
 
 - Check [Kubernetes Out of the box dashboard](https://app.datadoghq.com/screen/integration/86/kubernetes---overview?from_ts=1632251058272&to_ts=1632254658272&live=true)
 
-![alt text]((images/ootbdashboard.json))
+![]((images/ootbdashboard.json))
 
 - Check [Container Map](https://app.datadoghq.com/infrastructure/map?host=d33f0500ce64af0e4bd95726e4f9b74b32667424&fillby=avg%3Aprocess.stat.container.cpu.user_pct&sizeby=avg%3Anometric&groupby=kube_deployment&filter=kube_namespace%3Aguestbook&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=hostmap_blues&paletteflip=false&node_type=container)
 
